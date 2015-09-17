@@ -1,5 +1,3 @@
-package views.admin.mlproposals
-
 import org.specs2.mutable.After
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterExample

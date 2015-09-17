@@ -1,5 +1,3 @@
-package views.admin.mlproposals
-
 import org.specs2.mutable.After
 import org.specs2.mutable.Specification
 import org.specs2.mutable.BeforeAfter
@@ -8,16 +6,12 @@ import org.specs2.specification.Scope
 /*
  * This not works proper. "after" run on after before, even any test is not executed yet
  */
-class BeforeAfterAllSpec extends Specification with BeforeAfter {
-  sequential
+class BeforeAfterAllSpec extends Specification {
   var onTest = false
-  def before = {
-    println("==== before on all ====")
+
+  step {
+    println("step before on BeforeAfter")
     onTest = true
-  }
-  def after = {
-    println("==== after on all ====")
-    onTest = false 
   }
 
   "BeforeAfterAllSpec" should {
@@ -30,6 +24,11 @@ class BeforeAfterAllSpec extends Specification with BeforeAfter {
       onTest === true
     }
   }
+
+  step {
+    println("step middle on BeforeAfter")
+  }
+
   "BeforeAfterAllSpec2" should {
     "test3" in {
       println("all test 3")
@@ -47,6 +46,11 @@ class BeforeAfterAllSpec extends Specification with BeforeAfter {
     def after = {
       println("**** after on Scope ****")
     }
+  }
+
+  step {
+    println("step after on BeforeAfter")
+    onTest = false
   }
 }
 
