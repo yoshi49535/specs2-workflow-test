@@ -10,31 +10,34 @@ class SequentialSpec extends Specification with BeforeExample with AfterExample 
 
   sequential
 
+  var onTest = false
   def before = {
     println("==== before on sequential test ====")
+    onTest = true 
   }
   def after = {
     println("==== after on sequential test ====")
+    onTest = false 
   }
 
   "SequentialSpec" should {
-    "always true" in new BeforeAfterScope {
+    "test1" in new BeforeAfterScope {
       println("seq test 1")
-      true === true
+      onTest === true
     }
-    "always true again" in {
+    "test2" in {
       println("seq test 2")
-      true === true
+      onTest === true
     }
   }
   "SequentialSpec2" should {
-    "return true" in {
+    "test3" in {
       println("seq test 3")
-      true === true
+      onTest === true
     }
-    "return true again" in {
+    "test4" in {
       println("seq test 4")
-      true === true
+      onTest === true
     }
   }
 

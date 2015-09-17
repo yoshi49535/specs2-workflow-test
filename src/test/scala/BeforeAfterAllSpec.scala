@@ -10,31 +10,34 @@ import org.specs2.specification.Scope
  */
 class BeforeAfterAllSpec extends Specification with BeforeAfter {
   sequential
+  var onTest = false
   def before = {
     println("==== before on all ====")
+    onTest = true
   }
   def after = {
     println("==== after on all ====")
+    onTest = false 
   }
 
   "BeforeAfterAllSpec" should {
-    "always true" in new BeforeAfterScope {
+    "test1" in new BeforeAfterScope {
       println("all test 1")
-      true === true
+      onTest === true
     }
-    "always true again" in {
+    "test2" in {
       println("all test 2")
-      true === true
+      onTest === true
     }
   }
   "BeforeAfterAllSpec2" should {
-    "return true" in {
+    "test3" in {
       println("all test 3")
-      true === true
+      onTest === true
     }
-    "return true again" in {
+    "test4" in {
       println("all test 4")
-      true === true
+      onTest === true
     }
   }
 

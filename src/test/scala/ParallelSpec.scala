@@ -6,33 +6,37 @@ import org.specs2.specification.AfterExample
 import org.specs2.specification.BeforeExample
 import org.specs2.specification.Scope
 
+// CAUSION:: parallel test collapt the var value.
 class ParallelSpec extends Specification with BeforeExample with AfterExample {
+  @volatile var onTest = false
 
   def before = {
     println("==== before on parallel test ====")
+    onTest = true
   }
   def after = {
     println("==== after on parallel test ====")
+    onTest = false 
   }
 
   "ParallelSpec" should {
-    "always true" in new BeforeAfterScope {
+    "test1" in new BeforeAfterScope {
       println("para test 1")
-      true === true
+      onTest === true
     }
-    "always true again" in {
+    "test2" in {
       println("para test 2")
-      true === true
+      onTest === true
     }
   }
   "ParallelSpec2" should {
-    "return true" in {
+    "test3" in {
       println("para test 3")
-      true === true
+      onTest === true
     }
-    "return true again" in {
+    "test4" in {
       println("para test 4")
-      true === true
+      onTest === true
     }
   }
 
